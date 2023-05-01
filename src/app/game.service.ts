@@ -42,5 +42,67 @@ export class GameService {
     this.board = [ ... board];
   }
 
+  changePlayerTurn(squareClicked: any) {
+    this.updateBoard(squareClicked);
+    if(!this.isGameOver) this.activePlayer = this.activePlayer === "X" ? "O" : "X"
+    this.turnCount++;
+    this.isGameOver = this.isGameOver ? true : false;
+  }
+
+  updateBoard(squareClicked: any) {
+    this.board[squareClicked.id].state = squareClicked.state;
+    if(this.winner) {
+      this.winner = true;
+      this.isGameOver = false;
+      this.isGameOver = true;
+    }
+  }
+
+  get gameOver():boolean {
+    return this.turnCount > 8 || this.winner ? true : false;
+  }
+
+  get isWinner():boolean {
+    return this.checkDiag() || this.checkRows(this.board, "rows") || this.checkRows(this.board, "col") ? true : false;
+  }
+
+  checkRows (board: any, mode: any) {
+    const
+      ROW = mode === "row" ? true : false,
+      DIST = ROW ? 1 : 3,
+      INC = ROW ? 3 : 1,
+      NUMTIMES = ROW ? 7 : 3;
+
+      for ( let i = 0; i < NUMTIMES; i += INC) {
+        let
+          firstSquare = board[i], state,
+          secondSquare = board[i + DIST].state,
+          thirdSquare = board[i + (DIST * 2)].state;
+
+          if(firstSquare && secondSquare && thirdSquare) {
+            if(firstSquare === secondSquare && secondSquare === thirdSquare) return true;
+          }
+      }
+
+      return false;
+
+  }
+
+  checkDiag() {
+    const timesRun = 2;
+      midSquare = this.board[4].state;
+
+      for (let i = 0; i <= timesRun; i+= 2) {
+        let
+          upperCorner = this.board[i].state,
+          lowerCorner = this.board[8 - i].state;
+
+          if (midSquare && upperCorner && lowerCorner) {
+            if (midSquare === upperCorner && upperCorner === lowerCorner) return true;
+          }
+          return false;
+      }
+  }
+
 }
 
