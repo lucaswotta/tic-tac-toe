@@ -63,7 +63,7 @@ export class GameService {
   }
 
   get isWinner():boolean {
-    return this.checkDiag() || this.checkRows(this.board, "rows") || this.checkRows(this.board, "col") ? true : false;
+    return this.checkDiag() || this.checkRows(this.board, "row") || this.checkRows(this.board, "col") ? true : false;
   }
 
   checkRows (board: any, mode: any) {
@@ -83,13 +83,12 @@ export class GameService {
             if(firstSquare === secondSquare && secondSquare === thirdSquare) return true;
           }
       }
-
       return false;
 
   }
 
   checkDiag() {
-    const timesRun = 2;
+    const timesRun = 2,
       midSquare = this.board[4].state;
 
       for (let i = 0; i <= timesRun; i+= 2) {
@@ -100,8 +99,8 @@ export class GameService {
           if (midSquare && upperCorner && lowerCorner) {
             if (midSquare === upperCorner && upperCorner === lowerCorner) return true;
           }
-          return false;
       }
+      return false;
   }
 
 }
