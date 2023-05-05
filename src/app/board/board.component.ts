@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'app-board',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class BoardComponent {
 
-  constructor() {}
+  constructor(public gameService: GameService) {}
 
   ngOnInit(): void {
   }
