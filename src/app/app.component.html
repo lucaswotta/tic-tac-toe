@@ -10,8 +10,15 @@ to-blue-900">
     </h1>
 
     <!-- display the player name -->
-    <h1 class="text-center text-orange-600 text-4xl mt-10 font-bold"> Vez do
-      {{gameService.activePlayer}}
+    <h1 class="text-center text-orange-600 text-4xl mt-10 font-bold"
+    *ngIf="!gameService.winner"
+    [ngClass]="{'text-teal-500': gameService.activePlayer == 'O'}"
+    >É a vez do {{gameService.activePlayer}}
+    </h1>
+
+    <!-- display the winner -->
+    <h1 class="text-center text-red-500 mt-10 text-4xl font-semibold" *ngIf="gameService.winner">
+      {{gameService.activePlayer}} Venceu!
     </h1>
 
   </div>
