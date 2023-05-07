@@ -10,8 +10,7 @@ to-blue-900">
     </h1>
 
     <!-- display the player name -->
-    <h1 class="text-center text-orange-600 text-4xl mt-10 font-bold"
-    *ngIf="!gameService.winner"
+    <h1 class="text-center text-orange-600 text-4xl mt-10 font-bold" *ngIf="!gameService.winner"
     [ngClass]="{'text-teal-500': gameService.activePlayer == 'O'}"
     >É a vez do {{gameService.activePlayer}}
     </h1>
@@ -20,6 +19,20 @@ to-blue-900">
     <h1 class="text-center text-red-500 mt-10 text-4xl font-semibold" *ngIf="gameService.winner">
       {{gameService.activePlayer}} Venceu!
     </h1>
+
+    <!-- reset the game -->
+    <button class="bg-purple-400
+    hover:bg-yellow-400
+    text-dark
+    font-bold
+    py-2
+    px-4
+    rounded
+    mx-auto
+    block
+    mt-5"
+    *ngIf="gameService.gameOver"
+    (click)="resetGame()"> Reiniciar </button>
 
   </div>
 

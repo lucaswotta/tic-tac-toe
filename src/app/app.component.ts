@@ -9,5 +9,10 @@ import { GameService } from './game.service';
 export class AppComponent {
   title = 'tic-tac-toe';
   constructor (public gameService: GameService) {}
+
+  resetGame() {
+    this.gameService.newGame();
+  }
+
 }
 
